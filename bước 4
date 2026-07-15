@@ -1,0 +1,81 @@
+{
+  "name": "HotEvent",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "reward": {
+      "type": "number",
+      "default": 0
+    },
+    "url": {
+      "type": "string"
+    },
+    "image_url": {
+      "type": "string"
+    },
+    "video_url": {
+      "type": "string"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true
+    },
+    "end_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "ai_verification_enabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "ai_verification_prompt": {
+      "type": "string"
+    },
+    "sample_proof_image_url": {
+      "type": "string"
+    },
+    "sample_proof_video_url": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "reward"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "user"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
